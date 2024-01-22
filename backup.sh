@@ -27,7 +27,7 @@ echo "$(date +'%Y-%m-%d %H:%M:%S') Copying files to remote host ..." >> $log_fil
 # Run remote script
 zip_path=$REMOTE_DESTINATION/$zip_name
 echo "$(date +'%Y-%m-%d %H:%M:%S') Start running remote script ..." >> $log_file
-ssh -o StrictHostKeyChecking=no "$REMOTE_ADDRESS" "bash $REMOTE_SCRIPT_PATH \"$zip_path\" \"$REMOTE_MYSQL_USER\" \"$REMOTE_MYSQL_PASSWORD\" \"$REMOTE_MYSQL_DATABASE\" \"$REMOTE_RESTORE_DESTINATION\"" >> $log_file 2>&1
+ssh -o StrictHostKeyChecking=no "$REMOTE_USER"@"$REMOTE_ADDRESS" "bash $REMOTE_SCRIPT_PATH \"$zip_path\" \"$REMOTE_MYSQL_USER\" \"$REMOTE_MYSQL_PASSWORD\" \"$REMOTE_MYSQL_DATABASE\" \"$REMOTE_RESTORE_DESTINATION\"" >> $log_file 2>&1
 if [ $? -ne 0 ]; then
     echo "Error running script on remote server." >> $log_file
     exit 1
